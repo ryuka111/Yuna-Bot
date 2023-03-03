@@ -242,7 +242,7 @@ const objek=pesan.split("_")
 
 //Auto Akses # key
 
-   
+    if(pesan.split(" ").length=="1" && pesan.includes("#") && pesan !== "#menu"){
 
       const data = path.join("./", `${pesan.toString().slice(1)}.json`)
 
@@ -317,91 +317,29 @@ const lst=pesan.split(" ")
     if(stdout){kirim(id,{text: `${stdout}`})} })
 
 
+
+      
+
       
 
       
-if(pesan=="Maintenance"){fs.writeFileSync("./maintenance.json","on")
-xixy.sendMessage(id,{text: "*⭕Yuna Bot* _Mode Maintenance Diaktifkan_"})}
+
       
-try{
-if(pesan.split(" ")[0]=="#play" && pesan.includes("#play") && fs.readFileSync("./maintenance.json").toString()=="on"){kirim(id,{text: "*⭕Yuna Bot* _sedang maintenance, harap bersabar menunggu maintenance selesai_"})
-const tombol = [
-{buttonId: "id1", buttonText: {displayText: 'Donasi Pengembangan'}, type: 1},
-
-  ]
-const buttonInfo = {
-image: {url: './maintenance.jpg'},
-buttons: tombol,
-headerType: 4
-}
-await kirim(id, buttonInfo);
-}
-
-const responseButton = messages[0].message.buttonsResponseMessage;
-if(!messages[0].key.fromMe && responseButton){
-  if(responseButton.selectedButtonId == "id1"){
-   await kirim(id, 
-   {text:fs.readFileSync("./donasi.json").toString()})}
-} 
-} catch (error) {}
-
-try{
-if(pesan.split(" ")[0]=="#stiker" && pesan.includes("#stiker") && fs.readFileSync("./maintenance.json").toString()=="on"){kirim(id,{text: "*⭕Yuna Bot* _sedang maintenance, harap bersabar menunggu maintenance selesai_"})
-const tombol = [
-{buttonId: "id1", buttonText: {displayText: 'Donasi Pengembangan'}, type: 1},
-
-  ]
-const buttonInfo = {
-image: {url: './maintenance.jpg'},
-buttons: tombol,
-headerType: 4
-}
-await kirim(id, buttonInfo);
-}
-
-const responseButton = messages[0].message.buttonsResponseMessage;
-if(!messages[0].key.fromMe && responseButton){
-  if(responseButton.selectedButtonId == "id1"){
-   await kirim(id, 
-   {text:fs.readFileSync("./donasi.json").toString()})}
-} 
-} catch (error) {}
-
-try{
-if(pesan.split(" ")[0]=="#menu" && pesan.includes("#menu") && fs.readFileSync("./maintenance.json").toString()=="on"){kirim(id,{text: "*⭕Yuna Bot* _sedang maintenance, harap bersabar menunggu maintenance selesai_"})
-const tombol = [
-{buttonId: "id1", buttonText: {displayText: 'Donasi Pengembangan'}, type: 1},
-
-  ]
-const buttonInfo = {
-image: {url: './maintenance.jpg'},
-buttons: tombol,
-headerType: 4
-}
-await kirim(id, buttonInfo);
-}
-
-const responseButton = messages[0].message.buttonsResponseMessage;
-if(!messages[0].key.fromMe && responseButton){
-  if(responseButton.selectedButtonId == "id1"){
-   await kirim(id, 
-   {text:fs.readFileSync("./donasi.json").toString()})}
-} 
-} catch (error) {}
 
 })     
 
       
 
      // paste kan di area ini
-    
+
+      
 
       
 
 
 
 //Area Akhir Menu dan Kawan kawannya
-    
+
 }
 
   xixyBot()
