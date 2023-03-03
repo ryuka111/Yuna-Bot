@@ -1,4 +1,8 @@
+const yunayt = require('./yt.js');
+const util = require('util');
 const {writeExifImg} = require("./exif.js");
+const yt = require("yt-converter");
+const ytube = require('scraper-edge');
 const fs = require("fs");
 const path = require("path");
 const log = require("pino");
@@ -14,7 +18,7 @@ const { state,saveState } = useSingleFileAuthState("./sesi.json")
 async function xixyBot() {
     const xixy = await makeWASocket({
     logger: log({ level: 'silent' }),
-    browser: ["Stiker Only","Safari","3.0.0"],
+    browser: ["Yuna Bot","Safari","3.0.0"],
     printQRInTerminal: true,
     auth: state})
   
@@ -31,7 +35,7 @@ async function xixyBot() {
  //Stiker
     if(msg.message.imageMessage.caption =='#stiker'){
       const buffer = await downloadMediaMessage(msg, "buffer");
-      const filestiker = await writeExifImg(buffer, {packname:"Stiker By", author:"Yuna Bot"});
+      const filestiker = await writeExifImg(buffer, {packname:"Stiker By", author:"Yuna Bot\n\n0838269183692"});
       xixy.sendMessage(msg.key.remoteJid, {sticker:{url:filestiker}})};
 });
 //Akhir Area Stiker
@@ -48,6 +52,8 @@ xixy.ev.on("messages.upsert", async ({messages,type})=>{
     if(pesan == "#menu") {
 const tombol = [
 {buttonId: "id1", buttonText: {displayText: 'Donasi'}, type: 1},
+{buttonId: "id2", buttonText: {displayText: 'Tutor ytmp3'}, type: 1},
+  {buttonId: "id3", buttonText: {displayText: 'Group Yuna Open Public'}, type: 1},
   ]
 const buttonInfo = {
 image: {url: './logo.jpg'},
@@ -60,15 +66,24 @@ await kirim(id, buttonInfo);
 
 const responseButton = messages[0].message.buttonsResponseMessage;
 if(!messages[0].key.fromMe && responseButton){
-
   if(responseButton.selectedButtonId == "id1"){
    await kirim(id, 
    {text:fs.readFileSync("./donasi.json").toString()})}
+  if(responseButton.selectedButtonId == "id2"){
+   await kirim(id, 
+   {text:fs.readFileSync("./tutorytmp3.json").toString()})}
+  if(responseButton.selectedButtonId == "id3"){
+   await kirim(id, 
+   {text:fs.readFileSync("./GCyuna.json").toString()})}
    }
+   
       //untuk menu lainnya tinggal tulis kode diatas dimulai dari if dan pastekan di bawah ini
-      
+if(pesan=="ytfs"){fs.writeFileSync("./ytwait.json","off")
+xixy.sendMessage(id,{text: "*_🔮Yt Refresh Done_*"})}
      // paste kan di area ini
       
+if(pesan=="Mainten done"){fs.writeFileSync("./maintenance.json","off")
+xixy.sendMessage(id,{text: "*🔮Yuna Bot* _Maintenance Done_"})}
       
 });
 //Area Akhir Menu dan Kawan kawannya
