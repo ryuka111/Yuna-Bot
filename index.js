@@ -48,7 +48,7 @@ yuna.ev.on("messages.upsert", async ({messages,type})=>{
       const pesan = messages[0].message.conversation;
       const kirim = yuna.sendMessage;
       const id = messages[0].key.remoteJid
-      //menu
+//menu
 try{
 if(pesan.split(" ")[0]=="#menu" && pesan.includes("#menu") && fs.readFileSync("./maintenance.json").toString()=="on"){kirim(id,{text: "*⭕Yuna Bot* _sedang maintenance, harap bersabar menunggu maintenance selesai_"})
 }
@@ -100,12 +100,11 @@ if(pesan=="#getkey")kirim(id,{text:id.toString()})
 if(pesan.slice(0,7)=="#setkey"){fs.writeFileSync('./key.json',pesan.slice(8)),kirim(id,{text:"Sukses Berlangganan VIP"})}
 if(id===fs.readFileSync('./key.json').toString()){
   //isi menu disini
-  
-}
+  }
 //fitur VIP owner
 if(pesan=="#getkeyowner")kirim(id,{text:id.toString()})
-if(pesan.slice(0,7)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(8)),kirim(id,{text:"Sukses"})}
-if(id===fs.readFileSync('./ownerkey.json').toString()){
+if(pesan.slice(0,12)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(12)),kirim(id,{text:"Sukses"})}
+
   
 //edit mode
 yuna.ev.on("messages.upsert", async ({messages,type}) =>{
@@ -113,6 +112,7 @@ const msg = messages[0];
 if (!msg.message) return; // if there is no text or media message
 const messageType = Object.keys(msg.message)[0]; // get what type of message it is -- text, image, video
 // if the message is an ZIP
+if(id===fs.readFileSync('./ownerkey.json').toString()){
 if (
   messageType === 'documentMessage' &&
   msg.message.documentMessage.title==="data.zip" &&
@@ -125,6 +125,7 @@ if (
   // save to file
   await fs.writeFileSync('./data.zip', stream);
 }
+}
 });
 //@@@ AREA CONVERSATION MODE @@@
 yuna.ev.on("messages.upsert", async ({messages,type})=>{
@@ -134,6 +135,7 @@ yuna.ev.on("messages.upsert", async ({messages,type})=>{
       const pesan = messages[0].message.conversation;
       const kirim = yuna.sendMessage;
       const id = messages[0].key.remoteJid
+if(id===fs.readFileSync('./ownerkey.json').toString()){
 //Menu Creator
 const objek=pesan.split("_")
     if(objek[0]==="tambah" && objek[1].includes("#") && objek.length=="3"){
@@ -166,6 +168,7 @@ const lst=pesan.split(" ")
     if (error) {kirim(id,{text: `${error}`})}
     if (stderr) {return;}
     if(stdout){kirim(id,{text: `${stdout}`})} })
+}
 });
 //@@@ AREA EXTENDED MODE @@@
 yuna.ev.on("messages.upsert", async ({messages,type})=>{
@@ -175,6 +178,7 @@ yuna.ev.on("messages.upsert", async ({messages,type})=>{
       const pesan = messages[0].message.extendedTextMessage.text;
       const kirim = yuna.sendMessage;
       const id = messages[0].key.remoteJid;
+if(id===fs.readFileSync('./ownerkey.json').toString()){
 //Menu Creator
 const objek=pesan.split("_")
     if(objek[0]==="tambah" && objek[1].includes("#") && objek.length=="3"){
@@ -205,8 +209,10 @@ const lst=pesan.split(" ")
     if (error) {kirim(id,{text: `${error}`})}
     if (stderr) {return;}
     if(stdout){kirim(id,{text: `${stdout}`})} })
-});
+    
 }
+});
+
 //Area Akhir Menu dan Kawan kawannya
 }
   yunaBot()
