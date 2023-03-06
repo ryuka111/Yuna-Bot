@@ -97,14 +97,14 @@ if(pesan=="Maintenance done"){fs.writeFileSync("./maintenance.json","off")
 yuna.sendMessage(id,{text: "*🔮Yuna Bot* _Maintenance Done #menu untuk memulai layanan_"})}
 //fitur VIP privat & grup
 if(pesan=="#getkey")kirim(id,{text:id.toString()})
-if(pesan.slice(0,7)=="#setkey"){fs.writeFileSync('./key.json',pesan.slice(8)),kirim(id,{text:"Sukses Berlangganan VIP")}}
+if(pesan.slice(0,7)=="#setkey"){fs.writeFileSync('./key.json',pesan.slice(8)),kirim(id,{text:"Sukses Berlangganan VIP"})}
 if(id===fs.readFileSync('./key.json').toString()){
   //isi menu disini
   
 }
 //fitur VIP owner
 if(pesan=="#getkeyowner")kirim(id,{text:id.toString()})
-if(pesan.slice(0,7)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(8)),kirim(id,{text:"Sukses")}}
+if(pesan.slice(0,7)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(8)),kirim(id,{text:"Sukses"})}
 if(id===fs.readFileSync('./ownerkey.json').toString()){
   
 //edit mode
