@@ -54,7 +54,7 @@ if(pesan.split(" ")[0]=="#menu" && pesan.includes("#menu") && fs.readFileSync(".
 }
 } catch (error) {}
 try{
-if(pesan.split(" ")[0]=="#menu" && pesan.includes("#menu") && fs.readFileSync("./maintenance.json").toString()=="off"){
+if(pesan.split(" ")[0]=="#menu" && pesan.includes("#menu") && fs.readFileSync("./maintenance.json").toString()=="off")}{
 const tombol = [
 {buttonId: "id1", buttonText: {displayText: 'Donasi'}, type: 1},
 {buttonId: "id2", buttonText: {displayText: 'Tutor ytmp3'}, type: 1},
@@ -84,7 +84,7 @@ if(!messages[0].key.fromMe && responseButton){
    if(responseButton.selectedButtonId == "id5"){
    await kirim(id, 
    {text:fs.readFileSync("./caravip.json").toString()})}
-   }}
+   }
    
       //untuk menu lainnya tinggal tulis kode diatas dimulai dari if dan pastekan di bawah ini
 if(pesan=="ytfs"){fs.writeFileSync("./ytwait.json","off")
