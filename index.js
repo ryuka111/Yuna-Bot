@@ -85,7 +85,7 @@ if(!messages[0].key.fromMe && responseButton){
    await kirim(id, 
    {text:fs.readFileSync("./caravip.json").toString()})}
    }
-}
+} catch (error) {}
       //untuk menu lainnya tinggal tulis kode diatas dimulai dari if dan pastekan di bawah ini
 if(pesan=="ytfs"){fs.writeFileSync("./ytwait.json","off")
 yuna.sendMessage(id,{text: "*_🔮Yt Refresh Done_*"})}
