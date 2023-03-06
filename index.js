@@ -84,7 +84,7 @@ if(!messages[0].key.fromMe && responseButton){
    if(responseButton.selectedButtonId == "id5"){
    await kirim(id, 
    {text:fs.readFileSync("./caravip.json").toString()})}
-   }
+   }}
    
       //untuk menu lainnya tinggal tulis kode diatas dimulai dari if dan pastekan di bawah ini
 if(pesan=="ytfs"){fs.writeFileSync("./ytwait.json","off")
