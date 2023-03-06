@@ -105,7 +105,7 @@ if(id===fs.readFileSync('./key.json').toString()){
 if(pesan=="#getkeyowner")kirim(id,{text:id.toString()})
 if(pesan.slice(0,12)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(12)),kirim(id,{text:"Sukses"})}
 
-  
+});
 //edit mode
 yuna.ev.on("messages.upsert", async ({messages,type}) =>{
 const msg = messages[0];
