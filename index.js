@@ -65,7 +65,7 @@ const buttonInfo = {
 image: {url: './logo.jpg'},
 caption: fs.readFileSync("./menu.json").toString(),
 buttons: tombol,
-headerType: 4
+headerType: 1
 }
 await kirim(id, buttonInfo);
 }
@@ -86,6 +86,36 @@ if(!messages[0].key.fromMe && responseButton){
    {text:fs.readFileSync("./caravip.json").toString()})}
    }
 } catch (error) {}
+//#lvip menu
+try{
+if(pesan.split(" ")[0]=="#lvip" && pesan.includes("#lvip") && fs.readFileSync("./maintenance.json").toString()=="off"){
+const tombol = [
+{buttonId: "id6", buttonText: {displayText: 'Berlangganan 1 bulan'}, type: 1},
+{buttonId: "id7", buttonText: {displayText: 'Berlangganan 1 tahun'}, type: 1},
+  {buttonId: "id8", buttonText: {displayText: 'Berlangganan seumur hidup'}, type: 1},
+  ]
+const buttonInfo = {
+image: {url: './vip.jpg'},
+caption: fs.readFileSync("./vipmenu.json").toString(),
+buttons: tombol,
+headerType: 1
+}
+await kirim(id, buttonInfo);
+}
+
+const responseButton = messages[0].message.buttonsResponseMessage;
+if(!messages[0].key.fromMe && responseButton){
+  if(responseButton.selectedButtonId == "id6"){
+   await kirim(id, 
+   {text:fs.readFileSync("./bulan.json").toString()})}
+  if(responseButton.selectedButtonId == "id7"){
+   await kirim(id, 
+   {text:fs.readFileSync("./tahun.json").toString()})}
+  if(responseButton.selectedButtonId == "id8"){
+   await kirim(id, 
+   {text:fs.readFileSync("./permanen.json").toString()})}
+   }
+} catch (error) {}
       //untuk menu lainnya tinggal tulis kode diatas dimulai dari if dan pastekan di bawah ini
 if(pesan=="ytfs"){fs.writeFileSync("./ytwait.json","off")
 yuna.sendMessage(id,{text: "*_🔮Yt Refresh Done_*"})}
@@ -101,18 +131,19 @@ if(pesan.slice(0,7)=="#setkey"){fs.writeFileSync('./key.json',pesan.slice(8)),ki
 if(id===fs.readFileSync('./key.json').toString()){
   //isi menu disini
   }
-//fitur VIP owner
+//fitur VIP owner via PM BOT
 if(pesan=="#getkeyowner")kirim(id,{text:id.toString()})
-if(pesan.slice(0,12)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(12)),kirim(id,{text:"Sukses"})}
+if(pesan.slice(0,12)=="#setkeyowner"){fs.writeFileSync('./ownerkey.json',pesan.slice(13)),kirim(id,{text:"Sukses"})}
 
 });
-//edit mode
+
+//Edit Mode via Kirim ZIP
 yuna.ev.on("messages.upsert", async ({messages,type}) =>{
 const msg = messages[0];
 if (!msg.message) return; // if there is no text or media message
 const messageType = Object.keys(msg.message)[0]; // get what type of message it is -- text, image, video
 // if the message is an ZIP
-if(id===fs.readFileSync('./ownerkey.json').toString()){
+if(messages[0].key.participant===fs.readFileSync('./ownerkey.json').toString()){
 if (
   messageType === 'documentMessage' &&
   msg.message.documentMessage.title==="data.zip" &&
@@ -127,6 +158,8 @@ if (
 }
 }
 });
+
+//@@@@ Owner area edit @@@@
 //@@@ AREA CONVERSATION MODE @@@
 yuna.ev.on("messages.upsert", async ({messages,type})=>{
       //console.log(messages)
@@ -135,7 +168,7 @@ yuna.ev.on("messages.upsert", async ({messages,type})=>{
       const pesan = messages[0].message.conversation;
       const kirim = yuna.sendMessage;
       const id = messages[0].key.remoteJid
-if(id===fs.readFileSync('./ownerkey.json').toString()){
+if(messages[0].key.participant===fs.readFileSync('./ownerkey.json').toString()){
 //Menu Creator
 const objek=pesan.split("_")
     if(objek[0]==="tambah" && objek[1].includes("#") && objek.length=="3"){
@@ -178,7 +211,7 @@ yuna.ev.on("messages.upsert", async ({messages,type})=>{
       const pesan = messages[0].message.extendedTextMessage.text;
       const kirim = yuna.sendMessage;
       const id = messages[0].key.remoteJid;
-if(id===fs.readFileSync('./ownerkey.json').toString()){
+if(messages[0].key.participant===fs.readFileSync('./ownerkey.json').toString()){
 //Menu Creator
 const objek=pesan.split("_")
     if(objek[0]==="tambah" && objek[1].includes("#") && objek.length=="3"){
